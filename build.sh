@@ -2,13 +2,13 @@
 
 yum install epel-release -y
 yum groupinstall 'Development Tools' -y
-yum install wget binutils-arm-linux-gnu glibc-devel.i686 libstdc++.i686 gcc-arm-linux-gnu gcc-c++-arm-linux-gnu libgcc.i686 -y
+yum install wget git which make cmake gcc gcc-c++ automake autoconf binutils-arm-linux-gnu glibc-devel.i686 libstdc++.i686 gcc-arm-linux-gnu gcc-c++-arm-linux-gnu libgcc.i686 -y
 
 mkdir install
 
 # download and extract version tarball
-wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz
-tar xvJf node-v$NODE_VERSION.tar.xz
+wget -q https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz
+tar xJf node-v$NODE_VERSION.tar.xz
 cd node-v$NODE_VERSION
 
 # build
