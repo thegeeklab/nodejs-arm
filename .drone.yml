@@ -4,14 +4,14 @@ name: build
 
 platform:
   os: linux
-  arch: arm
+  arch: amd64
 
 steps:
 - name: build
   pull: always
-  image: xoxys/rpmbuild-centos7
+  image: centos:7
   commands:
-  - ls -l
+  - /bin/bash ./build.sh
   environment:
     NODE_VERSION: 10.15.3
 

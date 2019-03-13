@@ -1,4 +1,4 @@
-local PipelineBuild(os='linux', arch='arm') = {
+local PipelineBuild(os='linux', arch='amd64') = {
   kind: "pipeline",
   name: "build",
   platform: {
