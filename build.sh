@@ -8,7 +8,7 @@ mkdir -p $HOME/bin/arm-none-eabi-gcc/
 wget https://github.com/gnu-mcu-eclipse/arm-none-eabi-gcc/releases/download/v8.2.1-1.4/gnu-mcu-eclipse-arm-none-eabi-gcc-8.2.1-1.4-20190214-0604-centos32.tgz -q
 tar -C $HOME/bin/arm-none-eabi-gcc/ -xzf gnu-mcu-eclipse-arm-none-eabi-gcc-8.2.1-1.4-20190214-0604-centos32.tgz --strip-components 3
 chmod -R -w $HOME/bin/arm-none-eabi-gcc/
-export PATH=$HOME/bin/arm-none-eabi-gcc:$PATH
+export PATH=$HOME/bin/arm-none-eabi-gcc/bin:$PATH
 
 ls -l $HOME/bin/arm-none-eabi-gcc/
 which arm-none-eabi-gcc
