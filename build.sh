@@ -13,7 +13,7 @@ cd node-v$NODE_VERSION
 
 # build
 CC=arm-linux-gnu-gcc CXX=gcc-c++-arm-linux-gnu CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=../install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
-# make
-# make install
+make
+make install
 
-# ls -l ../install
+ls -l ../install
