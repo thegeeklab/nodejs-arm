@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
+yum install epel-release -y
 yum groupinstall 'Development Tools' -y
-yum install binutils-arm-linux-gnu glibc-devel.i686 libstdc++.i686 gcc-arm-linux-gnu gcc-c++-arm-linux-gnu libgcc.i686 -y
+yum install wget binutils-arm-linux-gnu glibc-devel.i686 libstdc++.i686 gcc-arm-linux-gnu gcc-c++-arm-linux-gnu libgcc.i686 -y
 
 mkdir install
 
