@@ -4,7 +4,7 @@ yum install epel-release -y
 yum groupinstall 'Development Tools' -y
 yum install wget git which make cmake gcc gcc-c++ automake autoconf binutils-arm-linux-gnu glibc-devel.i686 libstdc++.i686 gcc-arm-linux-gnu gcc-c++-arm-linux-gnu libgcc.i686 -y
 
-which gcc-arm-linux-gnu
+which arm-linux-gnu-gcc
 # mkdir install
 
 # # download and extract version tarball
