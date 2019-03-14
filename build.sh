@@ -31,9 +31,9 @@ cd $DRONE_HOME/node-v$NODE_VERSION
 
 # build
 # CC="arm-rpi-linux-gnueabihf-gcc -march=armv7-a" CXX="arm-rpi-linux-gnueabihf-g++ -march=armv7-a" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=$DRONE_HOME/install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
-CC="arm-linux-gnueabihf-gcc -march=armv7-a" CXX="arm-linux-gnueabihf-g++ -march=armv7-a" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=$DRONE_HOME/install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
+CC="arm-linux-gnueabihf-gcc -march=armv7-a" CXX="arm-linux-gnueabihf-g++ -march=armv7-a" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=node-v$NODE_VERSION --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
 
 make -j 8
-if [ ! -r node -o ! -L node ]; then ln -fs out/Release/node node; fi
-tar -zcf $DRONE_HOME/dist/node-v$NODE_VERSION-linux-armv7.tar.gz config.gypi icu_config.gypi node out/Release/node out/Release/openssl-cli
+make install DESTDIR=$DRONE_HOME/install/ PORTABLE=1
+tar -zcf $DRONE_HOME/dist/node-v$NODE_VERSION-linux-armv7l.tar.gz $DRONE_HOME/install/node-v$NODE_VERSION
 ls -l $DRONE_HOME/dist
