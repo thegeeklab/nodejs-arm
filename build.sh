@@ -30,8 +30,8 @@ CC="arm-rpi-linux-gnueabihf-gcc -march=armv7-a" CXX="arm-rpi-linux-gnueabihf-g++
 make -j 8
 make install
 
-ls -l ../install
-
+cd ../install
+ls -l
 tar -zxvf ../dist/node-v$NODE_VERSION-linux-armv7.tar.gz .
 
 ls -l ../dist
