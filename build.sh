@@ -7,15 +7,16 @@ yum install wget git which make cmake automake autoconf glibc-devel.i686 libstdc
 
 mkdir -p $HOME/compiler/
 cd $HOME/compiler/
-git clone https://github.com/raspberrypi/tools .
-export PATH=$HOME/compiler/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin:$PATH
+git clone https://github.com/rvagg/rpi-newer-crosstools .
+export PATH=$HOME/compiler/x64-gcc-4.9.4-binutils-2.28/arm-rpi-linux-gnueabihf/bin:$PATH
 
 # ls -l $HOME/bin/arm-none-eabi-gcc/
-which arm-linux-gnueabihf-gcc
-which arm-linux-gnueabihf-g++
+which arm-rpi-linux-gnueabihf-gcc
+which arm-rpi-linux-gnueabihf-g++
 
-arm-linux-gnueabihf-gcc --verbose
+arm-rpi-linux-gnueabihf-gcc --verbose
 
+# cd
 # mkdir install
 
 # # download and extract version tarball
