@@ -32,6 +32,6 @@ make install
 
 cd ../install
 ls -l
-tar -zxvf ../dist/node-v$NODE_VERSION-linux-armv7.tar.gz .
+tar -zcvf ../dist/node-v$NODE_VERSION-linux-armv7.tar.gz .
 
 ls -l ../dist
