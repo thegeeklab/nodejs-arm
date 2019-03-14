@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-yum install epel-release -y
-yum groupinstall 'Development Tools' -y
-yum install wget git bunzip2 which make cmake automake autoconf glibc-devel.i686 libstdc++.i686 libgcc.i686 -y
+# yum install epel-release -y
+# yum groupinstall 'Development Tools' -y
+# yum install wget git bunzip2 which make cmake automake autoconf glibc-devel.i686 libstdc++.i686 libgcc.i686 -y
 
 mkdir -p $HOME/compiler/
-cd
-git clone https://github.com/raspberrypi/tools
+cd $HOME/compiler/
+git clone https://github.com/raspberrypi/tools .
 export PATH=$HOME/compiler/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin:$PATH
 
 # ls -l $HOME/bin/arm-none-eabi-gcc/
