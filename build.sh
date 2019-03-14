@@ -19,7 +19,7 @@
 cd
 mkdir install
 mkdir dist
-touch dist/test.tar
+echo "testfile" dist/test.txt
 
 # # download and extract version tarball
 # wget -q https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz
