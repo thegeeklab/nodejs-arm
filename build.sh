@@ -16,17 +16,17 @@ which arm-rpi-linux-gnueabihf-g++
 
 arm-rpi-linux-gnueabihf-gcc --verbose
 
-# cd
-# mkdir install
+cd
+mkdir install
 
-# # download and extract version tarball
-# wget -q https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz
-# tar xJf node-v$NODE_VERSION.tar.xz
-# cd node-v$NODE_VERSION
+# download and extract version tarball
+wget -q https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz
+tar xJf node-v$NODE_VERSION.tar.xz
+cd node-v$NODE_VERSION
 
-# # build
-# CC=arm-none-eabi-gcc CXX=arm-none-eabi-g++ CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=../install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
-# make -j4
-# make install
+# build
+CC=arm-rpi-linux-gnueabihf-gcc CXX=arm-rpi-linux-gnueabihf-g++ CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=../install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
+make -j4
+make install
 
-# ls -l ../install
+ls -l ../install
