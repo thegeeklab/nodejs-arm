@@ -13,7 +13,7 @@ cd $DRONE_HOME/compiler/
 # git clone https://github.com/rvagg/rpi-newer-crosstools .
 # export PATH=$DRONE_HOME/compiler/x64-gcc-4.9.4-binutils-2.28/arm-rpi-linux-gnueabihf/bin:$PATH
 git clone https://github.com/raspberrypi/tools .
-export PATH=$DRONE_HOME/compiler/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin:$PATH
+export PATH=$DRONE_HOME/compiler/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin:$PATH
 
 
 
