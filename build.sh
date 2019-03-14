@@ -2,11 +2,12 @@
 
 yum install epel-release -y
 yum groupinstall 'Development Tools' -y
-yum install wget git which make cmake automake autoconf glibc-devel.i686 libstdc++.i686 libgcc.i686 -y
+yum install wget git bunzip2 which make cmake automake autoconf glibc-devel.i686 libstdc++.i686 libgcc.i686 -y
 
 mkdir -p $HOME/bin/arm-none-eabi-gcc/
-wget https://github.com/gnu-mcu-eclipse/arm-none-eabi-gcc/releases/download/v8.2.1-1.4/gnu-mcu-eclipse-arm-none-eabi-gcc-8.2.1-1.4-20190214-0604-centos32.tgz -q
-tar -C $HOME/bin/arm-none-eabi-gcc/ -xzf gnu-mcu-eclipse-arm-none-eabi-gcc-8.2.1-1.4-20190214-0604-centos32.tgz --strip-components 3
+wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/6-2017q2/gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2
+bunzip2 gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2
+tar -C $HOME/bin/arm-none-eabi-gcc/ -xvf gcc-arm-none-eabi-6-2017-q2-update-linux.tar
 chmod -R -w $HOME/bin/arm-none-eabi-gcc/
 export PATH=$HOME/bin/arm-none-eabi-gcc/bin:$PATH
 
