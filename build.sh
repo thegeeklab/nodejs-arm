@@ -18,6 +18,7 @@ arm-rpi-linux-gnueabihf-gcc --verbose
 
 cd
 mkdir install
+mkdir dist
 
 # download and extract version tarball
 wget -q https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz
@@ -27,6 +28,10 @@ cd node-v$NODE_VERSION
 # build
 CC="arm-rpi-linux-gnueabihf-gcc -march=armv7-a" CXX="arm-rpi-linux-gnueabihf-g++ -march=armv7-a" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=../install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
 make -j 8
-# make install
+make install
 
 ls -l ../install
+
+tar -zxvf ../dist/node-v$NODE_VERSION-linux-armv7.tar.gz .
+
+ls -l ../dist
