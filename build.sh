@@ -7,7 +7,7 @@ yum install wget git bunzip2 which make cmake automake autoconf glibc-devel.i686
 mkdir -p $HOME/bin/arm-none-eabi-gcc/
 wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/6-2017q2/gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2
 bunzip2 gcc-arm-none-eabi-6-2017-q2-update-linux.tar.bz2
-tar -C $HOME/bin/arm-none-eabi-gcc/ -xvf gcc-arm-none-eabi-6-2017-q2-update-linux.tar
+tar -C $HOME/bin/arm-none-eabi-gcc/ -xvf gcc-arm-none-eabi-6-2017-q2-update-linux.tar --strip-components 1
 chmod -R -w $HOME/bin/arm-none-eabi-gcc/
 export PATH=$HOME/bin/arm-none-eabi-gcc/bin:$PATH
 
