@@ -12,8 +12,8 @@ yum install wget git which make cmake automake autoconf glibc-devel.i686 libstdc
 cd $DRONE_HOME/compiler/
 # git clone https://github.com/rvagg/rpi-newer-crosstools .
 # export PATH=$DRONE_HOME/compiler/x64-gcc-4.9.4-binutils-2.28/arm-rpi-linux-gnueabihf/bin:$PATH
-git clone https://github.com/MatteoRagni/arm-rpi-linux-gnueabi-toolchain .
-export PATH=$DRONE_HOME/compiler/arm-rpi-linux-gnueabi/bin:$PATH
+git clone https://github.com/raspberrypi/tools .
+export PATH=$DRONE_HOME/compiler/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin:$PATH
 
 
 
