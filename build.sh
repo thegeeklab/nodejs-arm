@@ -16,7 +16,6 @@
 
 # arm-rpi-linux-gnueabihf-gcc --verbose
 
-cd /drone/src
 mkdir install
 mkdir dist
 echo "testfile" > dist/test.txt
