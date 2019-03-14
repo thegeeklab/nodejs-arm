@@ -25,7 +25,7 @@ tar xJf node-v$NODE_VERSION.tar.xz
 cd node-v$NODE_VERSION
 
 # build
-CC=arm-rpi-linux-gnueabihf-gcc CXX=arm-rpi-linux-gnueabihf-g++ CCFLAGS="-march=armv7-a" CXXFLAGS="-march=armv7-a"  CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=../install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
+CC="arm-rpi-linux-gnueabihf-gcc -march=armv7-a" CXX="arm-rpi-linux-gnueabihf-g++ -march=armv7-a" CCFLAGS="-march=armv7-a" CXXFLAGS="-march=armv7-a"  CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=../install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
 # make --j
 # make install
 
