@@ -12,8 +12,8 @@ yum install wget git which make cmake automake autoconf glibc-devel.i686 libstdc
 cd $DRONE_HOME/compiler/
 # git clone https://github.com/rvagg/rpi-newer-crosstools .
 # export PATH=$DRONE_HOME/compiler/x64-gcc-4.9.4-binutils-2.28/arm-rpi-linux-gnueabihf/bin:$PATH
-git clone https://github.com/raspberrypi/tools .
-export PATH=$DRONE_HOME/compiler/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin:$PATH
+git clone https://github.com/MatteoRagni/arm-rpi-linux-gnueabi-toolchain .
+export PATH=$DRONE_HOME/compiler/arm-rpi-linux-gnueabi/bin:$PATH
 
 
 
@@ -34,9 +34,6 @@ cd $DRONE_HOME/node-v$NODE_VERSION
 CC="arm-linux-gnueabihf-gcc -march=armv7-a" CXX="arm-linux-gnueabihf-g++ -march=armv7-a" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=$DRONE_HOME/install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
 
 make -j 8
-make install
-
-cd $DRONE_HOME/install
-tar -zcf ../dist/node-v$NODE_VERSION-linux-armv7.tar.gz .
-
+if [ ! -r node -o ! -L node ]; then ln -fs out/Release/node node; fi
+tar -zcf $DRONE_HOME/dist/node-v$NODE_VERSION-linux-armv7.tar.gz config.gypi icu_config.gypi node out/Release/node out/Release/openssl-cli
 ls -l $DRONE_HOME/dist
