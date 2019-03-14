@@ -1,38 +1,37 @@
 #!/usr/bin/env bash
 
-# yum install epel-release -y
-# yum groupinstall 'Development Tools' -y
-# yum install wget git which make cmake automake autoconf glibc-devel.i686 libstdc++.i686 libgcc.i686 -y
-# # yum install wget git which -y
+export DRONE_HOME=/drone/src
+mkdir -p $DRONE_HOME/compiler/
+mkdir $DRONE_HOME/install
+mkdir $DRONE_HOME/dist
 
-# mkdir -p $HOME/compiler/
-# cd $HOME/compiler/
-# git clone https://github.com/rvagg/rpi-newer-crosstools .
-# export PATH=$HOME/compiler/x64-gcc-4.9.4-binutils-2.28/arm-rpi-linux-gnueabihf/bin:$PATH
+yum install epel-release -y
+yum groupinstall 'Development Tools' -y
+yum install wget git which make cmake automake autoconf glibc-devel.i686 libstdc++.i686 libgcc.i686 -y
+# yum install wget git which -y
 
-# # ls -l $HOME/bin/arm-none-eabi-gcc/
+cd $DRONE_HOME/compiler/
+git clone https://github.com/rvagg/rpi-newer-crosstools .
+export PATH=$DRONE_HOME/compiler/x64-gcc-4.9.4-binutils-2.28/arm-rpi-linux-gnueabihf/bin:$PATH
+
+# ls -l $HOME/bin/arm-none-eabi-gcc/
 # which arm-rpi-linux-gnueabihf-gcc
 # which arm-rpi-linux-gnueabihf-g++
 
 # arm-rpi-linux-gnueabihf-gcc --verbose
 
-mkdir install
-mkdir dist
-echo "testfile" > dist/test.txt
+cd $DRONE_HOME
+# download and extract version tarball
+wget -q https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz
+tar xJf node-v$NODE_VERSION.tar.xz
+cd $DRONE_HOME/node-v$NODE_VERSION
 
-# # download and extract version tarball
-# wget -q https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz
-# tar xJf node-v$NODE_VERSION.tar.xz
-# cd node-v$NODE_VERSION
+# build
+CC="arm-rpi-linux-gnueabihf-gcc -march=armv7-a" CXX="arm-rpi-linux-gnueabihf-g++ -march=armv7-a" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=$DRONE_HOME/install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
+make -j 8
+make install
 
-# # build
-# CC="arm-rpi-linux-gnueabihf-gcc -march=armv7-a" CXX="arm-rpi-linux-gnueabihf-g++ -march=armv7-a" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=../install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
-# make -j 8
-# make install
+cd $DRONE_HOME/install
+tar -zcf ../dist/node-v$NODE_VERSION-linux-armv7.tar.gz .
 
-# cd ../install
-# ls -l
-# tar -zcvf ../dist/node-v$NODE_VERSION-linux-armv7.tar.gz .
-
-pwd
-ls -la
+ls -l $DRONE_HOME/dist
