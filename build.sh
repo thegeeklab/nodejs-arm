@@ -16,7 +16,7 @@
 
 # arm-rpi-linux-gnueabihf-gcc --verbose
 
-cd
+cd /drone/src
 mkdir install
 mkdir dist
 echo "testfile" > dist/test.txt
@@ -36,4 +36,4 @@ echo "testfile" > dist/test.txt
 # tar -zcvf ../dist/node-v$NODE_VERSION-linux-armv7.tar.gz .
 
 pwd
-ls -l
+ls -la
