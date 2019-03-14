@@ -2,7 +2,8 @@
 
 # yum install epel-release -y
 # yum groupinstall 'Development Tools' -y
-# yum install wget git bunzip2 which make cmake automake autoconf glibc-devel.i686 libstdc++.i686 libgcc.i686 -y
+# yum install wget git which make cmake automake autoconf glibc-devel.i686 libstdc++.i686 libgcc.i686 -y
+yum install wget git which
 
 mkdir -p $HOME/compiler/
 cd $HOME/compiler/
