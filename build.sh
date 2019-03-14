@@ -35,4 +35,4 @@ touch dist/test.tar
 # ls -l
 # tar -zcvf ../dist/node-v$NODE_VERSION-linux-armv7.tar.gz .
 
-ls -l ../dist
+# ls -l ../dist
