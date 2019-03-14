@@ -35,4 +35,5 @@ echo "testfile" dist/test.txt
 # ls -l
 # tar -zcvf ../dist/node-v$NODE_VERSION-linux-armv7.tar.gz .
 
-# ls -l ../dist
+pwd
+ls -l
