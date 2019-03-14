@@ -8,19 +8,31 @@ local PipelineBuild(os='linux', arch='amd64') = {
   steps: [
     {
       name: "build",
-      image: "xoxys/rpmbuild-centos7",
+      image: "centos:7",
       pull: "always",
       environment: {
-        NODE_VERSION: "10.15.3"
+        NODE_VERSION: "${DRONE_TAG##v}"
       },
       commands: [
         "/bin/bash ./build.sh"
       ],
     },
-  ]
+    {
+      name: "publish-github",
+      image: "plugins/github-release",
+      pull: "always",
+      settings: {
+        api_key: { "from_secret": "github_token"},
+        files: ["dist/*"],
+      },
+    },
+  ],
+  trigger: {
+    event: [ "tag" ],
+  },
 };
 
-local PipelineNotifications = {
+local PipelineNotifications(depends_on=[]) = {
   kind: "pipeline",
   name: "notifications",
   platform: {
@@ -30,6 +42,7 @@ local PipelineNotifications = {
   steps: [
     {
       image: "plugins/matrix",
+      name: "matrix",
       settings: {
         homeserver: "https://matrix.rknet.org",
         roomid: "MtidqQXWWAtQcByBhH:rknet.org",
@@ -37,17 +50,14 @@ local PipelineNotifications = {
         username: { "from_secret": "matrix_username" },
         password: { "from_secret": "matrix_password" },
       },
+      when: {
+        status: [ "success", "failure" ],
+      },
     },
   ],
-  depends_on: [
-    "deployment",
-  ],
-  trigger: {
-    event: [ "push", "tag" ],
-    status: [ "success", "failure" ],
-  },
+  depends_on: depends_on
 };
 
 [
-  PipelineBuild(os='linux', arch='arm')
+  PipelineBuild(os='linux', arch='amd64')
 ]

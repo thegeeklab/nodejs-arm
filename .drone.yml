@@ -13,7 +13,7 @@ steps:
   commands:
   - /bin/bash ./build.sh
   environment:
-    NODE_VERSION: 10.15.3
+    NODE_VERSION: "${DRONE_TAG##v}"
 
 - name: publish-github
   pull: always
@@ -23,8 +23,9 @@ steps:
       from_secret: github_token
     files:
     - "dist/*"
-    - sha256sum.txt
-  when:
-    event:
-    - tag
+
+trigger:
+  event:
+  - tag
+
 ...
