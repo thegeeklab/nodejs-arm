@@ -79,6 +79,9 @@ local PipelineNotifications(depends_on=[]) = {
       },
     },
   ],
+  trigger: {
+    event: [ "tag" ],
+  },
   depends_on: depends_on
 };
 

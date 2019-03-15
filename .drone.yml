@@ -76,6 +76,10 @@ steps:
     - success
     - failure
 
+trigger:
+  event:
+  - tag
+
 depends_on:
 - linux-amd64
 
