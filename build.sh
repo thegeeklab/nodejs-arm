@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DRONE_HOME="${DRONE_HOME:=/drone/src}"
+DRONE_HOME=/drone/src
 DRONE_INSTALL="${DRONE_INSTALL:=$DRONE_HOME/install}"
 DRONE_DIST="${DRONE_DIST:=$DRONE_HOME/dist}"
 COMPILER_CC="${COMPILER_CC:=arm-rpi-linux-gnueabihf-gcc -march=armv7-a}"
@@ -20,3 +20,7 @@ CC="${COMPILER_CC}" CXX="${COMPILER_CXX}" CC_host="gcc -m32" CXX_host="g++ -m32"
 make -j 8
 make install DESTDIR="${DRONE_INSTALL}" PORTABLE=1
 tar -zcf $DRONE_DIST/node-v$NODE_VERSION-linux-armv$NODE_ARM_VERSION.tar.gz -C $DRONE_INSTALL node-v$NODE_VERSION
+
+# create release notes file
+echo "Target: ARM_VERSION=${NODE_ARM_VERSION} ARM_FPU=${COMPILER_ARM_FPU}" >> $DRONE_HOME/NOTE.md
+echo "Compiler options: CC=`${COMPILER_CC}` CXX=`${COMPILER_CXX}`" >> $DRONE_HOME/NOTE.md
