@@ -14,7 +14,7 @@ steps:
   - /bin/bash ./build.sh
   environment:
     COMPILER_CC: arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++
-    COMPILER_CXX: arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++
+    COMPILER_CXX: arm-rpi-linux-gnueabihf-g++ -march=armv7-a -static-libstdc++
     NODE_VERSION: "${DRONE_TAG##v}"
 
 - name: publish-github
