@@ -20,8 +20,8 @@ NODE_ARM_VERSION="${NODE_ARM_VERSION:=7}"
 # make -j 8
 # make install DESTDIR="${DRONE_INSTALL}" PORTABLE=1
 
-tar -zcf "$DRONE_DIST/node-v$NODE_VERSION-linux-armv$NODE_ARM_VERSION.tar.gz" -C "$DRONE_INSTALL" "node-v$NODE_VERSION"
+tar -zcf $DRONE_DIST/node-v$NODE_VERSION-linux-armv$NODE_ARM_VERSION.tar.gz -C ${DRONE_INSTALL} node-v$NODE_VERSION
 
-# create release notes file
-echo "Target: ARM_VERSION=${NODE_ARM_VERSION} ARM_FPU=${COMPILER_ARM_FPU}" >> $DRONE_HOME/NOTE.md
-echo "Compiler options: CC=`\"${COMPILER_CC}\""` CXX=`\"${COMPILER_CXX}\""`" >> $DRONE_HOME/NOTE.md
+# # create release notes file
+# echo "Target: ARM_VERSION=${NODE_ARM_VERSION} ARM_FPU=${COMPILER_ARM_FPU}" >> $DRONE_HOME/NOTE.md
+# echo "Compiler options: CC=`\"${COMPILER_CC}\""` CXX=`\"${COMPILER_CXX}\""`" >> $DRONE_HOME/NOTE.md
