@@ -22,7 +22,7 @@ tar xJf node-v$NODE_VERSION.tar.xz
 cd $DRONE_HOME/node-v$NODE_VERSION
 
 # build
-CC="arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++" CXX="arm-rpi-linux-gnueabihf-g++ -march=armv7-a -static-libstdc++" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=$DRONE_HOME/install --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
+CC="arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++" CXX="arm-rpi-linux-gnueabihf-g++ -march=armv7-a -static-libstdc++" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure  --prefix=--prefix=node-v$NODE_VERSION --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
 # CC="arm-linux-gnueabihf-gcc -march=armv7-a" CXX="arm-linux-gnueabihf-g++ -march=armv7-a" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure --prefix=node-v$NODE_VERSION --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=neon
 
 make -j 8
