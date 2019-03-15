@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# NODE_VERSION=1
 DRONE_HOME=/drone/src
 DRONE_INSTALL="${DRONE_INSTALL:=$DRONE_HOME/install}"
 DRONE_DIST="${DRONE_DIST:=$DRONE_HOME/dist}"
@@ -20,7 +20,8 @@ NODE_ARM_VERSION="${NODE_ARM_VERSION:=7}"
 # make -j 8
 # make install DESTDIR="${DRONE_INSTALL}" PORTABLE=1
 
-tar -zcf ${DRONE_DIST}/node-v${NODE_VERSION}-linux-armv${NODE_ARM_VERSION}.tar.gz -C ${DRONE_INSTALL} node-v${NODE_VERSION}
+ls -l /drone/src
+tar -zcf $DRONE_DIST/node-v$NODE_VERSION-linux-armv$NODE_ARM_VERSION.tar.gz -C $DRONE_INSTALL node-v$NODE_VERSION
 
 # # create release notes file
 # echo "Target: ARM_VERSION=${NODE_ARM_VERSION} ARM_FPU=${COMPILER_ARM_FPU}" >> $DRONE_HOME/NOTE.md
