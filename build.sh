@@ -20,5 +20,5 @@ cd $DRONE_HOME/node-v$NODE_VERSION
 CC="${COMPILER_CC}" CXX="${COMPILER_CXX}" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure  --prefix=node-v$NODE_VERSION --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=$COMPILER_ARM_FPU
 
 make -j 8
-make install DESTDIR="${DRONE_INSTALL}" PORTABLE=1
+# make install DESTDIR="${DRONE_INSTALL}" PORTABLE=1
 # tar -zcf $DRONE_DIST/node-v$NODE_VERSION-linux-armv$NODE_ARM_VERSION.tar.gz -C $DRONE_INSTALL node-v$NODE_VERSION
