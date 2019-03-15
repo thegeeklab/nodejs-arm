@@ -8,7 +8,7 @@ local PipelineBuild(os='linux', arch='amd64') = {
   steps: [
     {
       name: "build",
-      image: "xoxys/cc-arm",
+      image: "xoxys/cc-arm:linux-amd64",
       pull: "always",
       environment: {
         NODE_VERSION: "${DRONE_TAG##v}",
