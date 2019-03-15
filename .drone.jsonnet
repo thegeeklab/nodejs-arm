@@ -13,7 +13,7 @@ local PipelineBuild(os='linux', arch='amd64') = {
       environment: {
         NODE_VERSION: "${DRONE_TAG##v}",
         COMPILER_CC: "arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++",
-        COMPILER_CXX: "arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++"
+        COMPILER_CXX: "arm-rpi-linux-gnueabihf-g++ -march=armv7-a -static-libstdc++"
       },
       commands: [
         "/bin/bash ./build.sh"
