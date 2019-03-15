@@ -79,6 +79,9 @@ steps:
 trigger:
   event:
   - tag
+  status:
+  - success
+  - failure
 
 depends_on:
 - linux-amd64

@@ -81,6 +81,7 @@ local PipelineNotifications(depends_on=[]) = {
   ],
   trigger: {
     event: [ "tag" ],
+    status: [ "success", "failure" ],
   },
   depends_on: depends_on
 };
