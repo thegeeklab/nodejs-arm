@@ -4,7 +4,7 @@ DRONE_HOME="${DRONE_HOME:=/drone/src}"
 DRONE_INSTALL="${DRONE_INSTALL:=$DRONE_HOME/install}"
 DRONE_DIST="${DRONE_DIST:=$DRONE_HOME/dist}"
 COMPILER_CC="${COMPILER_CC:=arm-rpi-linux-gnueabihf-gcc -march=armv7-a}"
-COMPILER_CXX="${COMPILER_CXX:=arm-rpi-linux-gnueabihf-gcc -march=armv7-a}"
+COMPILER_CXX="${COMPILER_CXX:=arm-rpi-linux-gnueabihf-g++ -march=armv7-a}"
 COMPILER_ARM_FPU="${COMPILER_ARM_FPU:=vfpv3}"
 NODE_ARM_VERSION="${NODE_ARM_VERSION:=7}"
 
