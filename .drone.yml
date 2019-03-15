@@ -9,10 +9,12 @@ platform:
 steps:
 - name: build
   pull: always
-  image: centos:7
+  image: xoxys/cc-arm
   commands:
   - /bin/bash ./build.sh
   environment:
+    COMPILER_CC: arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++
+    COMPILER_CXX: arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++
     NODE_VERSION: "${DRONE_TAG##v}"
 
 - name: publish-github

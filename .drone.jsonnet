@@ -8,10 +8,12 @@ local PipelineBuild(os='linux', arch='amd64') = {
   steps: [
     {
       name: "build",
-      image: "centos:7",
+      image: "xoxys/cc-arm",
       pull: "always",
       environment: {
-        NODE_VERSION: "${DRONE_TAG##v}"
+        NODE_VERSION: "${DRONE_TAG##v}",
+        COMPILER_CC: "arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++",
+        COMPILER_CXX: "arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++"
       },
       commands: [
         "/bin/bash ./build.sh"
