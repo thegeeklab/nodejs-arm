@@ -26,7 +26,7 @@ make install DESTDIR="${DRONE_INSTALL}" PORTABLE=1
 tar -zcf $DRONE_DIST/node-v$NODE_VERSION-linux-armv$NODE_ARM_VERSION.tar.gz -C $DRONE_INSTALL node-v$NODE_VERSION
 
 # create release notes file
-cat >$DRONE_HOME/NOTE.md <<EOF
+cat >$DRONE_HOME/NOTE.md <<\EOF
 Target system:
 - ARM_VERSION=`${NODE_ARM_VERSION}`
 - ARM_FPU=`${COMPILER_ARM_FPU}`
