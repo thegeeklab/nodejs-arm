@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 DRONE_HOME=/drone/src
 DRONE_INSTALL="${DRONE_INSTALL:=$DRONE_HOME/install}"

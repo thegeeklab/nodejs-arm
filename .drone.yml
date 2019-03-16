@@ -63,6 +63,7 @@ platform:
 
 steps:
 - name: matrix
+  pull: always
   image: plugins/matrix
   settings:
     homeserver: https://matrix.rknet.org

@@ -68,6 +68,7 @@ local PipelineNotifications(depends_on=[]) = {
     {
       image: "plugins/matrix",
       name: "matrix",
+      pull: 'always',
       settings: {
         homeserver: "https://matrix.rknet.org",
         roomid: "MtidqQXWWAtQcByBhH:rknet.org",
