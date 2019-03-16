@@ -46,6 +46,7 @@ local PipelineBuild(os='linux', arch='amd64') = {
       settings: {
         api_key: { "from_secret": "github_token"},
         files: ["dist/*", "sha256sum.txt"],
+        overwrite: true,
         note: "NOTE.md",
         title: "${DRONE_TAG}",
       },

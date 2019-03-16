@@ -46,6 +46,7 @@ steps:
     - "dist/*"
     - sha256sum.txt
     note: NOTE.md
+    overwrite: true
     title: "${DRONE_TAG}"
 
 trigger:
