@@ -17,7 +17,7 @@ mkdir -p $DRONE_DIST
 
 # download and extract version tarball
 curl https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz -o $DRONE_HOME/node.tar.xz -s
-tar xJf $DRONE_HOME/node.tar.xz -C $DRONE_HOME
+tar xJf $DRONE_HOME/node.tar.xz -C $DRONE_HOME --warning=no-unknown-keyword
 cd $DRONE_HOME/node-v$NODE_VERSION
 
 # build
