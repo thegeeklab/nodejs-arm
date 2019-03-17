@@ -19,6 +19,8 @@ mkdir -p $DRONE_DIST
 cd $DRONE_HOME
 curl https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz -o $DRONE_HOME/node_source.tar.xz -s
 tar xJf $DRONE_HOME/node_source.tar.xz
+pwd
+ls -l
 cd $DRONE_HOME/node_source
 
 # build
