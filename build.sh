@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-set -e
+set -o pipefail
+set -o errtrace
+set -o nounset
+set -o errexit
 
 DRONE_HOME=/drone/src
 DRONE_INSTALL="${DRONE_INSTALL:=$DRONE_HOME/install}"
@@ -12,11 +15,11 @@ NODE_ARM_VERSION="${NODE_ARM_VERSION:=7}"
 mkdir -p $DRONE_INSTALL
 mkdir -p $DRONE_DIST
 
-cd $DRONE_HOME
 # download and extract version tarball
-wget -q https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz
-tar xJf node-v$NODE_VERSION.tar.xz
-cd $DRONE_HOME/node-v$NODE_VERSION
+cd $DRONE_HOME
+curl https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz -o node_source.tar.xz -s
+tar xJf node_source.tar.xz
+cd node_source
 
 # build
 CC="${COMPILER_CC}" CXX="${COMPILER_CXX}" CC_host="gcc -m32" CXX_host="g++ -m32" ./configure  --prefix=/node-v$NODE_VERSION --dest-cpu=arm --cross-compiling --dest-os=linux --with-arm-float-abi=hard --with-arm-fpu=$COMPILER_ARM_FPU
