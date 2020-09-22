@@ -1,5 +1,7 @@
 # nodejs-arm
 
+[![Build Status](https://img.shields.io/drone/build/thegeeklab/nodejs-arm?logo=drone)](https://cloud.drone.io/thegeeklab/nodejs-arm)
+
 Node.js 10.x and higher requires as minimum GCC 4.9.4 but old stable distributions like CentOS 7 are still on 4.8.x. The pre-build Node.js ARM packages are cross compiled with
 Debian and a 4.9.x compiler, so they wont work on all target systems.
 
