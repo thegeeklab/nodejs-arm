@@ -9,20 +9,20 @@ platform:
 steps:
 - name: build
   pull: always
-  image: xoxys/cc-arm:linux-amd64
+  image: thegeeklab/cc-arm:linux-amd64
   commands:
   - /bin/bash ./build.sh
   environment:
     COMPILER_CC: arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++
     COMPILER_CXX: arm-rpi-linux-gnueabihf-g++ -march=armv7-a -static-libstdc++
-    NODE_VERSION: "${DRONE_TAG##v}"
+    NODE_VERSION: ${DRONE_TAG##v}
 
 - name: checksum
   pull: always
   image: alpine
   commands:
   - apk add --no-cache coreutils
-  - "sha256sum -b dist/* > sha256sum.txt"
+  - sha256sum -b dist/* > sha256sum.txt
 
 - name: gpg-sign
   pull: always
@@ -30,7 +30,7 @@ steps:
   settings:
     detach_sign: true
     files:
-    - "dist/*"
+    - dist/*
     key:
       from_secret: gpgsign_key
     passphrase:
@@ -43,11 +43,11 @@ steps:
     api_key:
       from_secret: github_token
     files:
-    - "dist/*"
+    - dist/*
     - sha256sum.txt
     note: NOTE.md
     overwrite: true
-    title: "${DRONE_TAG}"
+    title: ${DRONE_TAG}
 
 trigger:
   event:
@@ -87,5 +87,9 @@ trigger:
 
 depends_on:
 - linux-amd64
+
+---
+kind: signature
+hmac: 8b7188a1e02f594863788c9fb15a93caa0a37efc663fd677993946d6f2341284
 
 ...
