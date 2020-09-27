@@ -8,8 +8,7 @@ platform:
 
 steps:
 - name: build
-  pull: always
-  image: thegeeklab/cc-arm:linux-amd64
+  image: thegeeklab/cc-arm
   commands:
   - /bin/bash ./build.sh
   environment:
@@ -18,7 +17,6 @@ steps:
     NODE_VERSION: ${DRONE_TAG##v}
 
 - name: checksum
-  pull: always
   image: alpine
   commands:
   - apk add --no-cache coreutils
@@ -40,7 +38,6 @@ steps:
     - refs/tags/**
 
 - name: publish-github
-  pull: always
   image: plugins/github-release
   settings:
     api_key:
@@ -100,6 +97,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 669b0c8a87a013413d409db3a1204ec1537f188c29a1fdc2d110d67c739363d7
+hmac: a9951719559f862af44d4ce947d9b7e77a4f5755ff8d8f66b62cec629eca23d9
 
 ...

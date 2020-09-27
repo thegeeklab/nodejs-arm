@@ -8,8 +8,7 @@ local PipelineBuild(os='linux', arch='amd64') = {
   steps: [
     {
       name: 'build',
-      image: 'thegeeklab/cc-arm:linux-amd64',
-      pull: 'always',
+      image: 'thegeeklab/cc-arm',
       environment: {
         NODE_VERSION: '${DRONE_TAG##v}',
         COMPILER_CC: 'arm-rpi-linux-gnueabihf-gcc -march=armv7-a -static-libstdc++',
@@ -22,7 +21,6 @@ local PipelineBuild(os='linux', arch='amd64') = {
     {
       name: 'checksum',
       image: 'alpine',
-      pull: 'always',
       commands: [
         'apk add --no-cache coreutils',
         'sha256sum -b dist/* > sha256sum.txt',
@@ -45,7 +43,6 @@ local PipelineBuild(os='linux', arch='amd64') = {
     {
       name: 'publish-github',
       image: 'plugins/github-release',
-      pull: 'always',
       settings: {
         api_key: { from_secret: 'github_token' },
         files: ['dist/*', 'sha256sum.txt'],
