@@ -38,6 +38,9 @@ local PipelineBuild(os='linux', arch='amd64') = {
         detach_sign: true,
         files: ['dist/*'],
       },
+      when: {
+        ref: ['refs/tags/**'],
+      },
     },
     {
       name: 'publish-github',
@@ -50,10 +53,13 @@ local PipelineBuild(os='linux', arch='amd64') = {
         note: 'NOTE.md',
         title: '${DRONE_TAG}',
       },
+      when: {
+        ref: ['refs/tags/**'],
+      },
     },
   ],
   trigger: {
-    event: ['tag'],
+    ref: ['refs/heads/master', 'refs/tags/**', 'refs/pull/**'],
   },
 };
 
@@ -66,12 +72,11 @@ local PipelineNotifications(depends_on=[]) = {
   },
   steps: [
     {
-      image: 'plugins/matrix',
       name: 'matrix',
-      pull: 'always',
+      image: 'plugins/matrix',
       settings: {
-        homeserver: 'https://matrix.rknet.org',
-        roomid: 'MtidqQXWWAtQcByBhH:rknet.org',
+        homeserver: { from_secret: 'matrix_homeserver' },
+        roomid: { from_secret: 'matrix_roomid' },
         template: 'Status: **{{ build.status }}**<br/> Build: [{{ repo.Owner }}/{{ repo.Name }}]({{ build.link }}) ({{ build.branch }}) by {{ build.author }}<br/> Message: {{ build.message }}',
         username: { from_secret: 'matrix_username' },
         password: { from_secret: 'matrix_password' },
@@ -82,7 +87,7 @@ local PipelineNotifications(depends_on=[]) = {
     },
   ],
   trigger: {
-    event: ['tag'],
+    ref: ['refs/heads/master', 'refs/tags/**'],
     status: ['success', 'failure'],
   },
   depends_on: depends_on,

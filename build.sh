@@ -11,6 +11,7 @@ COMPILER_CC="${COMPILER_CC:=arm-rpi-linux-gnueabihf-gcc -march=armv7-a}"
 COMPILER_CXX="${COMPILER_CXX:=arm-rpi-linux-gnueabihf-g++ -march=armv7-a}"
 COMPILER_ARM_FPU="${COMPILER_ARM_FPU:=vfpv3}"
 NODE_ARM_VERSION="${NODE_ARM_VERSION:=7}"
+NODE_VERSION="${NODE_VERSION:=10.22.0}"
 
 mkdir -p $DRONE_INSTALL
 mkdir -p $DRONE_DIST

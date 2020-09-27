@@ -35,6 +35,9 @@ steps:
       from_secret: gpgsign_key
     passphrase:
       from_secret: gpgsign_passphrase
+  when:
+    ref:
+    - refs/tags/**
 
 - name: publish-github
   pull: always
@@ -48,10 +51,15 @@ steps:
     note: NOTE.md
     overwrite: true
     title: ${DRONE_TAG}
+  when:
+    ref:
+    - refs/tags/**
 
 trigger:
-  event:
-  - tag
+  ref:
+  - refs/heads/master
+  - refs/tags/**
+  - refs/pull/**
 
 ---
 kind: pipeline
@@ -63,13 +71,14 @@ platform:
 
 steps:
 - name: matrix
-  pull: always
   image: plugins/matrix
   settings:
-    homeserver: https://matrix.rknet.org
+    homeserver:
+      from_secret: matrix_homeserver
     password:
       from_secret: matrix_password
-    roomid: MtidqQXWWAtQcByBhH:rknet.org
+    roomid:
+      from_secret: matrix_roomid
     template: "Status: **{{ build.status }}**<br/> Build: [{{ repo.Owner }}/{{ repo.Name }}]({{ build.link }}) ({{ build.branch }}) by {{ build.author }}<br/> Message: {{ build.message }}"
     username:
       from_secret: matrix_username
@@ -79,8 +88,9 @@ steps:
     - failure
 
 trigger:
-  event:
-  - tag
+  ref:
+  - refs/heads/master
+  - refs/tags/**
   status:
   - success
   - failure
@@ -90,6 +100,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 8b7188a1e02f594863788c9fb15a93caa0a37efc663fd677993946d6f2341284
+hmac: 669b0c8a87a013413d409db3a1204ec1537f188c29a1fdc2d110d67c739363d7
 
 ...
